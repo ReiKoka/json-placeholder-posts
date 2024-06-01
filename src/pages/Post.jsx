@@ -34,7 +34,7 @@ function Post() {
 
     if (!newObj) return toast.errror(`Error updating post`);
 
-    setOpen(false)
+    setOpen(false);
     return toast.success("Post updated successfully!");
   }
 
@@ -46,9 +46,9 @@ function Post() {
       <p className="font-fontBody mb-3 w-full text-sm font-light capitalize md:mb-5 md:text-base">
         {body}
       </p>
-      <div className="w-full flex justify-end">
+      <div className="flex w-full justify-end">
         <button
-          className="active:scale-9 font-fontBody mb-8 w-full rounded-lg border-0 bg-indigo-600 p-1 text-center  uppercase tracking-widest text-indigo-50 ring-indigo-600 focus:outline-none focus:ring-1 focus:ring-offset-1 md:w-1/4 md:p-2"
+          className="font-fontBody mb-8 w-full rounded-lg border-0 bg-indigo-600 p-1 text-center uppercase  tracking-widest text-indigo-50 ring-indigo-600 focus:outline-none focus:ring-1 focus:ring-offset-1 active:scale-90 md:w-1/4 md:p-2"
           onClick={() => setOpen(true)}
         >
           Edit Post
