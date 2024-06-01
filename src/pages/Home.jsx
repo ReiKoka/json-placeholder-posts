@@ -5,7 +5,7 @@ function Home() {
   return (
     <div className="grid h-full place-items-center lg:grid-cols-2 grid-rows-2 ">
       <img
-        src="/public/logo/json-placeholder-posts-high-resolution-logo-transparent.svg"
+        src="/logo/json-placeholder-posts-high-resolution-logo-transparent.svg"
         alt=""
         className="my-6 w-[80%] rounded-3xl 2xs:w-[90%] xs:w-4/5 max-w-sm sm:max-w-md lg:row-start-1 lg:row-end-3 lg:w-[90%] lg:max-w-none lg:rounded-l-none lg:justify-items-start"
       />
