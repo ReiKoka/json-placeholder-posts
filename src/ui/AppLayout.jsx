@@ -4,7 +4,7 @@ import Main from "./../components/Main";
 
 function AppLayout() {
   return (
-    <div className="mx-auto h-svh w-full max-w-7xl">
+    <div className="mx-auto h-dvh w-full max-w-7xl">
       <Header />
       <Main />
       <Toaster position="top-center" richColors/>

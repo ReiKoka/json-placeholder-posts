@@ -9,6 +9,7 @@ import PostForm from "./pages/PostForm";
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
+
     children: [
       {
         path: "/",
@@ -29,7 +30,6 @@ const router = createBrowserRouter([
       {
         path: "posts/new",
         element: <PostForm />,
-        // action: FormAction
       },
     ],
   },

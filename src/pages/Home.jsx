@@ -3,12 +3,14 @@ import { FaRegArrowAltCircleRight } from "react-icons/fa";
 
 function Home() {
   return (
-    <div className="grid h-80% place-items-center lg:grid-cols-2 grid-rows-2">
-      <img
-        src="/logo/json-placeholder-posts-high-resolution-logo-transparent.svg"
-        alt=""
-        className="my-6 w-[50%] xs:w-4/5  max-w-sm sm:max-w-md lg:row-start-1 lg:row-end-3 lg:w-[80%] lg:max-w-none lg:rounded-l-none lg:justify-items-start"
-      />
+    <div className="grid place-items-center lg:grid-cols-2 grid-rows-2 lg:h-full">
+      <div className="flex items-center justify-center">
+        <img
+          src="/logo/json-placeholder-posts-high-resolution-logo-transparent.svg"
+          alt=""
+          className="my-6 w-[50%] xs:w-4/5  max-w-sm sm:max-w-md lg:row-start-1 lg:row-end-3 lg:w-[80%] lg:max-w-none lg:rounded-l-none lg:justify-items-start"
+        />
+      </div>
 
       <div className="flex flex-col items-center gap-6 text-center lg:justify-end lg:h-full ">
         <h1 className="w-full font-fontTitle text-4xl font-semibold tracking-widest lg:text-6xl">

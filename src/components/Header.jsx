@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Header() {
   return (
-    <header className="bg-indigo-100 sticky flex w-full justify-center sm:justify-start py-2">
+    <header className="sticky flex h-20 min-h-20 w-full items-center justify-center bg-indigo-100 sm:justify-start">
       <Link className="md:ml-10" to="/">
         <img
           src="/logo/json-placeholder-posts-high-resolution-logo-transparent.svg"
