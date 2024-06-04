@@ -5,10 +5,12 @@ import Post, { loader as postLoader } from "./pages/Post";
 import Error from "./components/Error";
 import Home from "./pages/Home";
 import PostForm from "./pages/PostForm";
+import PagesError from "./components/PagesError";
 
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
+    errorElement: <Error />,
 
     children: [
       {
@@ -19,13 +21,13 @@ const router = createBrowserRouter([
         path: "/posts",
         element: <Posts />,
         loader: postsLoader,
-        errorElement: <Error />,
+        errorElement: <PagesError />,
       },
       {
         path: "/posts/:postId",
         element: <Post />,
         loader: postLoader,
-        errorElement: <Error />,
+        errorElement: <PagesError />,
       },
       {
         path: "posts/new",

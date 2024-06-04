@@ -1,12 +1,9 @@
-import { Link } from "react-router-dom";
-import Header from "./Header";
-import { FaRegArrowAltCircleLeft } from "react-icons/fa";
+import { FaRegArrowAltCircleLeft } from "react-icons/fa"
+import { Link } from "react-router-dom"
 
-function Error() {
+function PagesError() {
   return (
-    <div className="mx-auto h-dvh w-full max-w-[90rem]">
-      <Header />
-      <div className="flex h-[calc(100%-70px)] w-full flex-col bg-indigo-50 ">
+    <div className="flex h-full w-full flex-col bg-indigo-50 ">
         <div className="h-1/4 lg:hidden"></div>
         <div className="flex flex-col items-center h-3/4 gap-10 lg:gap-14 lg:h-full lg:justify-center">
           <h1 className="font-fontBody text-9xl font-bold text-indigo-800 lg:text-[10rem]">
@@ -26,8 +23,7 @@ function Error() {
           </div>
         </div>
       </div>
-    </div>
-  );
+  )
 }
 
-export default Error;
+export default PagesError
