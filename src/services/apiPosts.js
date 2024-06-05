@@ -93,7 +93,7 @@ export async function deletePost(id) {
 }
 
 export async function updatePost(obj) {
-  console.log(obj)
+  console.log(obj);
   try {
     const res = await fetch(`${API_URL}/posts/${obj.id}`, {
       method: "PUT",

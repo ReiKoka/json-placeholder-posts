@@ -12,7 +12,7 @@ function PostForm() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (Number(userId) <= 0 || Number(userId) >= 10) {
+    if (Number(userId) < 1 || Number(userId) > 10) {
       toast.error("User ID does not exist!");
       return;
     }

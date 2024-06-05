@@ -37,9 +37,12 @@ function Posts() {
 export async function loader() {
   const posts = await getPosts();
   let users;
-  if (posts) {
+
+  if (posts.length) {
     users = await getUsers();
   }
+
+  console.log({posts, users})
   return { posts, users };
 }
 
