@@ -1,23 +1,24 @@
 import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useLocation } from "react-router-dom";
 import { IconContext } from "react-icons";
 import { FaRegComments, FaRegPenToSquare } from "react-icons/fa6";
 import { HiOutlineX } from "react-icons/hi";
 import { toast } from "sonner";
 
-import {
-  getComments,
-  getPost,
-  getUsers,
-  updatePost,
-} from "../services/apiPosts";
+import { getComments, getPost, updatePost } from "../services/apiPosts";
 
 import Comment from "../components/Comment";
 import EditModal from "../components/EditModal";
 
 function Post() {
   const [open, setOpen] = useState(false);
-  const post = useLoaderData();
+  const postObj = useLoaderData();
+  const location = useLocation();
+
+  const { users } = location.state;
+  const user = users.find((user) => user.id === postObj.userId);
+
+  const post = { ...postObj, userName: user.name };
 
   const [title, setTitle] = useState(post.title);
   const [body, setBody] = useState(post.body);
@@ -166,13 +167,9 @@ export async function loader({ params }) {
   const post = await getPost(params.postId);
   const comments = await getComments(post?.id);
 
-  const users = await getUsers();
-  const user = users.find((user) => user.id === post.userId);
-
   const postObj = {
     ...post,
     comments,
-    userName: user.name,
   };
 
   return postObj;

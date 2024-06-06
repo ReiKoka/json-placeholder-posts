@@ -39,6 +39,7 @@ function PostItem({ post, users }) {
           </button>
           <Link
             to={`./${post.id}`}
+            state={{users}}
             className="grow rounded-lg border-2 border-indigo-600 bg-indigo-600 px-2 py-2 text-center font-fontBody text-sm font-normal uppercase tracking-wider text-indigo-50 ring-indigo-500 transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-1 active:scale-90 lg:w-1/5 lg:grow-0"
           >
             View details

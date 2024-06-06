@@ -1,4 +1,4 @@
-const API_URL = "https://jsonplaceholder.typicode.com/";
+const API_URL = "https://jsonplaceholder.typicode.com";
 
 export async function getPosts() {
   try {

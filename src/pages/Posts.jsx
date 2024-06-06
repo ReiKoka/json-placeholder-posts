@@ -11,7 +11,7 @@ function Posts() {
 
   let allPosts = posts;
   
-  if (newPost) allPosts =  [...posts, newPost]
+  if (newPost) allPosts =  [newPost, ...posts ]
 
   return (
     <div className="p-4 lg:p-10">
