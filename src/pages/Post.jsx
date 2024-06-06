@@ -26,19 +26,27 @@ function Post() {
   async function handleSubmit(e) {
     e.preventDefault();
 
+    const formData = new FormData(e.target);
+    const { title: formTitle, body: formBody } =
+      await Object.fromEntries(formData);
+
     const data = {
-      title: title,
-      body: body,
+      title: formTitle,
+      body: formBody,
       id: post.id,
       userId: post.userId,
     };
 
+    
     const newObj = await updatePost(data);
-
-    if (!newObj) return toast.error(`Error updating post`);
-
+    
+    if (!newObj) return toast.error(`Error updating post ❌`);
+    
     setOpen(false);
-    return toast.success("Post updated successfully!");
+    setTitle(data.title);
+    setBody(data.body);
+    
+    return toast.success("Post updated successfully! ✅");
   }
 
   return (
@@ -83,8 +91,8 @@ function Post() {
                   type="text"
                   placeholder="Edit post title"
                   name="title"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
+                  defaultValue={title}
+                  // onChange={(e) => setTitle(e.target.value)}
                   required
                   className="grow rounded-md border-2 bg-indigo-50 px-3 py-2 font-fontBody tracking-widest text-stone-800 ring-indigo-500  focus:outline-none focus:ring-2 "
                 />
@@ -101,8 +109,8 @@ function Post() {
                   type="text"
                   name="body"
                   placeholder="Enter post body"
-                  value={body}
-                  onChange={(e) => setBody(e.target.value)}
+                  defaultValue={body}
+                  // onChange={(e) => setBody(e.target.value)}
                   required
                   className="h-auto min-h-40 grow rounded-md border-2 bg-indigo-50 px-3 py-2 font-fontBody tracking-widest text-stone-800 ring-indigo-500  focus:outline-none focus:ring-2 "
                 />
