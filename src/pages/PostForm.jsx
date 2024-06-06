@@ -29,7 +29,7 @@ function PostForm() {
 
     if (!newObj) return toast.error("Couldn't create new post! ❌");
 
-    navigate("/posts");
+    navigate("/posts", {state: newObj});
     return toast.success("New post created successfully! ✅");
   }
 

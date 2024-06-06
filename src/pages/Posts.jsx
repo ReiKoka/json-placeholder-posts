@@ -1,4 +1,4 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useLocation } from "react-router-dom";
 import { getPosts, getUsers } from "../services/apiPosts";
 import PostItem from "../components/PostItem";
 import SearchPost from "../components/SearchPost";
@@ -6,6 +6,12 @@ import { HiOutlinePlusCircle } from "react-icons/hi";
 
 function Posts() {
   const { posts, users } = useLoaderData();
+  const location = useLocation();
+  const newPost = location.state;
+
+  let allPosts = posts;
+  
+  if (newPost) allPosts =  [...posts, newPost]
 
   return (
     <div className="p-4 lg:p-10">
@@ -25,7 +31,7 @@ function Posts() {
         </Link>
       </div>
       <ul className="flex flex-col border-indigo-500">
-        {posts.map((post) => (
+        {allPosts.map((post) => (
           <PostItem key={post.id} post={post} users={users} />
         ))}
       </ul>
