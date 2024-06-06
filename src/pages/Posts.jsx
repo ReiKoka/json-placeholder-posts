@@ -3,15 +3,19 @@ import { getPosts, getUsers } from "../services/apiPosts";
 import PostItem from "../components/PostItem";
 import SearchPost from "../components/SearchPost";
 import { HiOutlinePlusCircle } from "react-icons/hi";
+import { useState } from "react";
 
 function Posts() {
   const { posts, users } = useLoaderData();
   const location = useLocation();
-  const newPost = location.state;
 
-  let allPosts = posts;
-  
-  if (newPost) allPosts =  [newPost, ...posts ]
+  const [allPosts, setAllPosts] = useState(posts);
+  const [newPost, setNewPost] = useState(location.state);
+
+  if (newPost) {
+    setAllPosts((prevState) => [newPost, ...prevState]);
+    setNewPost(null);
+  }
 
   return (
     <div className="p-4 lg:p-10">
@@ -23,7 +27,7 @@ function Posts() {
           <SearchPost />
         </div>
         <Link
-          className="active:scale-9 font-fontBody flex w-full items-center justify-center gap-4 rounded-lg border-0 bg-indigo-600  p-1 text-center uppercase tracking-widest text-indigo-50 ring-indigo-600 focus:outline-none focus:ring-1 focus:ring-offset-1 md:w-1/4 md:p-2"
+          className="active:scale-9 flex w-full items-center justify-center gap-4 rounded-lg border-0 bg-indigo-600 p-1  text-center font-fontBody uppercase tracking-widest text-indigo-50 ring-indigo-600 focus:outline-none focus:ring-1 focus:ring-offset-1 md:w-1/4 md:p-2"
           to="/posts/new"
         >
           <HiOutlinePlusCircle className="size-5 " />
@@ -32,7 +36,7 @@ function Posts() {
       </div>
       <ul className="flex flex-col border-indigo-500">
         {allPosts.map((post) => (
-          <PostItem key={post.id} post={post} users={users} />
+          <PostItem key={post.id} post={post} users={users} allPosts={allPosts} setAllPosts={setAllPosts} />
         ))}
       </ul>
     </div>
@@ -48,7 +52,7 @@ export async function loader() {
     users = await getUsers();
   }
 
-  console.log({posts, users})
+  console.log({ posts, users });
   return { posts, users };
 }
 
