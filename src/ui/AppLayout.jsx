@@ -10,7 +10,7 @@ function AppLayout() {
   const isLoading = navigation.state === "loading";
 
   return (
-    <div className="mx-auto h-dvh w-full max-w-[90rem]">
+    <div className="mx-auto h-dvh w-full max-w-[90rem] overflow-auto">
       {isLoading && <Loader />}
 
       <Header />

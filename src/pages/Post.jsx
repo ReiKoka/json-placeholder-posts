@@ -12,8 +12,6 @@ import Comment from "../components/Comment";
 import EditModal from "../components/EditModal";
 import BackButton from "../ui/BackButton";
 
-
-
 function Post() {
   const [open, setOpen] = useState(false);
   const postObj = useLoaderData();
@@ -66,9 +64,9 @@ function Post() {
       <p className="mb-3 w-full font-fontBody text-sm font-light capitalize md:mb-5 md:text-base">
         {body}
       </p>
-      <div className="flex w-full justify-end">
+      <div className="flex w-full justify-end mb-5 md:mb-7">
         <button
-          className="mb-8 w-full rounded-lg border-0 bg-indigo-600 p-1 text-center font-fontBody uppercase  tracking-widest text-indigo-50 ring-indigo-600 focus:outline-none focus:ring-1 focus:ring-offset-1 active:scale-90 md:w-1/4 md:p-2"
+          className="w-full rounded-lg border-0 bg-indigo-600 p-3 text-center font-fontBody uppercase  tracking-widest text-indigo-50 ring-indigo-600 focus:outline-none focus:ring-1 focus:ring-offset-1 active:scale-90 md:w-1/4 md:py-3 px-6"
           onClick={() => setOpen(true)}
         >
           Edit Post
@@ -130,7 +128,7 @@ function Post() {
           <div className="w-full justify-end lg:flex">
             <button
               type="submit"
-              className="w-full rounded-xl bg-indigo-600 p-4 px-10 py-4 font-fontBody font-medium tracking-widest text-indigo-50 ring-indigo-500  focus:outline-none focus:ring-2 focus:ring-offset-2 active:scale-90 lg:w-fit"
+              className="w-full rounded-xl bg-indigo-600 px-10 py-4 font-fontBody font-medium tracking-widest text-indigo-50 ring-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 active:scale-90 lg:w-fit"
             >
               Edit Post
             </button>
@@ -138,7 +136,7 @@ function Post() {
         </form>
       </EditModal>
 
-      <div className="mb-7 flex w-full items-center justify-between border-b-[1px] border-t-[1px] border-stone-300">
+      <div className="mb-5 md:mb-7 flex w-full items-center justify-between border-b-[1px] border-t-[1px] border-stone-300">
         <p className="flex items-end px-2 py-3 font-fontTitle md:px-4 md:py-4">
           <span className="pr-2 md:pr-3">
             {
