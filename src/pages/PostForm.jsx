@@ -2,6 +2,7 @@ import { addPost } from "../services/apiPosts";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import BackButton from "../ui/BackButton";
 
 function PostForm() {
   const [userId, setUserId] = useState("");
@@ -29,21 +30,24 @@ function PostForm() {
 
     if (!newObj) return toast.error("Couldn't create new post! ❌");
 
-    navigate("/posts", {state: newObj});
+    navigate("/posts", { state: newObj });
     return toast.success("New post created successfully! ✅");
   }
 
   return (
-    <div className="flex justify-center">
-      <div className="h-full min-h-[600px] w-full p-5 lg:max-w-[768px]">
+    <div className="flex w-full h-full items-center justify-center">
+      <div className="min-h-[600px] w-full p-5 lg:max-w-[768px]">
         <form
           onSubmit={handleSubmit}
           className="flex h-full flex-col justify-between gap-8 rounded-xl border-2 border-stone-300 p-5 shadow-2xl"
         >
           <div>
-            <h1 className="mb-10 font-fontTitle text-xl font-bold">
-              Create a new post
-            </h1>
+            <div className="mb-10 flex gap-4 lg:gap-6">
+              <BackButton />
+              <h1 className="font-fontTitle text-xl font-bold">
+                Create a new post
+              </h1>
+            </div>
             <div className="flex flex-col gap-5">
               <div className="flex w-full flex-col gap-2">
                 <label
@@ -59,7 +63,7 @@ function PostForm() {
                   value={userId}
                   onChange={(e) => setUserId(e.target.value)}
                   required
-                  className="font-fontBody grow rounded-md border-2 bg-indigo-50 px-3 py-2 tracking-widest text-stone-800 ring-indigo-500  focus:outline-none focus:ring-2 "
+                  className="grow rounded-md border-2 bg-indigo-50 px-3 py-2 font-fontBody tracking-widest text-stone-800 ring-indigo-500  focus:outline-none focus:ring-2 "
                 />
               </div>
 
@@ -77,7 +81,7 @@ function PostForm() {
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   required
-                  className="font-fontBody grow rounded-md border-2 bg-indigo-50 px-3 py-2 tracking-widest text-stone-800 ring-indigo-500  focus:outline-none focus:ring-2 "
+                  className="grow rounded-md border-2 bg-indigo-50 px-3 py-2 font-fontBody tracking-widest text-stone-800 ring-indigo-500  focus:outline-none focus:ring-2 "
                 />
               </div>
 
@@ -95,7 +99,7 @@ function PostForm() {
                   value={body}
                   onChange={(e) => setBody(e.target.value)}
                   required
-                  className="font-fontBody h-48 grow rounded-md border-2 bg-indigo-50 px-3 py-2 tracking-widest text-stone-800 ring-indigo-500  focus:outline-none focus:ring-2"
+                  className="h-48 grow rounded-md border-2 bg-indigo-50 px-3 py-2 font-fontBody tracking-widest text-stone-800 ring-indigo-500  focus:outline-none focus:ring-2"
                 />
               </div>
             </div>
@@ -104,7 +108,7 @@ function PostForm() {
           <div className="w-full justify-end lg:flex">
             <button
               type="submit"
-              className="font-fontBody w-full rounded-xl bg-indigo-600 p-4 px-10 py-4 font-medium tracking-widest text-indigo-50 ring-indigo-500  focus:outline-none focus:ring-2 focus:ring-offset-2 active:scale-90 lg:w-fit"
+              className="w-full rounded-xl bg-indigo-600 p-4 px-10 py-4 font-fontBody font-medium tracking-widest text-indigo-50 ring-indigo-500  focus:outline-none focus:ring-2 focus:ring-offset-2 active:scale-90 lg:w-fit"
             >
               Create Post
             </button>

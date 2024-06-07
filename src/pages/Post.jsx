@@ -1,14 +1,18 @@
 import { useState } from "react";
 import { useLoaderData, useLocation } from "react-router-dom";
+import { toast } from "sonner";
+
 import { IconContext } from "react-icons";
 import { FaRegComments, FaRegPenToSquare } from "react-icons/fa6";
 import { HiOutlineX } from "react-icons/hi";
-import { toast } from "sonner";
 
 import { getComments, getPost, updatePost } from "../services/apiPosts";
 
 import Comment from "../components/Comment";
 import EditModal from "../components/EditModal";
+import BackButton from "../ui/BackButton";
+
+
 
 function Post() {
   const [open, setOpen] = useState(false);
@@ -37,21 +41,26 @@ function Post() {
       userId: post.userId,
     };
 
-    
     const newObj = await updatePost(data);
-    
+
     if (!newObj) return toast.error(`Error updating post ❌`);
-    
+
     setOpen(false);
     setTitle(data.title);
     setBody(data.body);
-    
+
     return toast.success("Post updated successfully! ✅");
   }
 
   return (
-    <div className=" flex w-full flex-col p-4 md:px-6 md:py-6">
-      <h2 className="mb-3 font-fontTitle text-xl font-bold capitalize md:text-2xl">
+    <div className=" flex w-full flex-col p-4 md:p-6 lg:p-10">
+      <div className="mb-10 flex gap-4 lg:gap-6">
+        <BackButton />
+        <h1 className="font-fontTitle text-2xl font-semibold text-stone-800 md:mb-0 lg:text-3xl">
+          Post #{post.id}
+        </h1>
+      </div>
+      <h2 className="mb-3 font-fontBody text-xl capitalize md:text-2xl">
         {title}
       </h2>
       <p className="mb-3 w-full font-fontBody text-sm font-light capitalize md:mb-5 md:text-base">

@@ -5,10 +5,11 @@ import SearchPost from "../components/SearchPost";
 import { HiOutlinePlusCircle } from "react-icons/hi";
 import { useState } from "react";
 
+import BackButton from "../ui/BackButton";
+
 function Posts() {
   const { posts, users } = useLoaderData();
   const location = useLocation();
-
   const [allPosts, setAllPosts] = useState(posts);
   const [newPost, setNewPost] = useState(location.state);
 
@@ -18,12 +19,15 @@ function Posts() {
   }
 
   return (
-    <div className="p-4 lg:p-10">
+    <div className="p-4 md:p-6 lg:p-10">
       <div className="mb-6 flex flex-col gap-2 md:flex-row lg:mb-10 lg:gap-4">
         <div className="flex flex-col md:w-full md:flex-row md:items-center md:justify-between">
-          <h2 className="mb-4 font-fontTitle text-2xl font-semibold text-stone-800 md:mb-0">
-            All Posts
-          </h2>
+          <div className="flex gap-4 lg:gap-6">
+            <BackButton />
+            <h1 className="mb-4 font-fontTitle text-2xl font-semibold text-stone-800 md:mb-0 lg:text-3xl">
+              All Posts
+            </h1>
+          </div>
           <SearchPost />
         </div>
         <Link
@@ -36,7 +40,13 @@ function Posts() {
       </div>
       <ul className="flex flex-col border-indigo-500">
         {allPosts.map((post) => (
-          <PostItem key={post.id} post={post} users={users} allPosts={allPosts} setAllPosts={setAllPosts} />
+          <PostItem
+            key={post.id}
+            post={post}
+            users={users}
+            allPosts={allPosts}
+            setAllPosts={setAllPosts}
+          />
         ))}
       </ul>
     </div>
@@ -52,7 +62,6 @@ export async function loader() {
     users = await getUsers();
   }
 
-  console.log({ posts, users });
   return { posts, users };
 }
 
