@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { deletePost } from "../services/apiPosts";
 import { toast } from "sonner";
 import { HiOutlineTrash } from "react-icons/hi";
+import { HiEye } from "react-icons/hi";
 
 function PostItem({ post, users, allPosts, setAllPosts }) {
   const user = users.find((user) => user.id === post.userId);
@@ -9,9 +10,9 @@ function PostItem({ post, users, allPosts, setAllPosts }) {
   async function handleDelete() {
     await deletePost(post.id);
 
-    setAllPosts(posts => posts.filter(item => item.id !== post.id))
+    setAllPosts((posts) => posts.filter((item) => item.id !== post.id));
 
-    console.log(allPosts)
+    console.log(allPosts);
 
     return toast.success("Post deleted successfully!");
   }
@@ -39,8 +40,9 @@ function PostItem({ post, users, allPosts, setAllPosts }) {
           <Link
             to={`./${post.id}`}
             state={{ users }}
-            className="grow rounded-lg border-2 border-indigo-600 bg-indigo-600 px-2 py-2 text-center font-fontBody text-sm font-normal uppercase tracking-wider text-indigo-50 ring-indigo-500 transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-1 active:scale-90 lg:w-1/5 lg:grow-0"
+            className="active-visible:ring-1 leading-0 flex grow justify-center gap-4 rounded-lg border-2 border-indigo-600 bg-indigo-600 px-2 py-2 text-center font-fontBody text-sm font-normal uppercase tracking-wider text-indigo-50 ring-indigo-500 transition-all duration-300 hover:scale-105 active:scale-90 active:bg-indigo-400  active:outline-none lg:w-1/5 lg:grow-0"
           >
+            <HiEye className="leading-0 size-4" />
             View details
           </Link>
         </div>
