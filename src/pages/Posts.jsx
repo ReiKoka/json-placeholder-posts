@@ -32,7 +32,7 @@ function Posts() {
         <div className="flex flex-col gap-2 md:flex-row md:gap-4">
           <SearchPost />
           <Link
-            className="active:scale-9 flex grow items-center justify-center gap-4 rounded-lg border-0 bg-indigo-600  p-3 px-6 text-center font-fontBody uppercase tracking-widest text-indigo-50 ring-indigo-600 focus:outline-none focus:ring-1 focus:ring-offset-1 md:py-3"
+            className="flex grow items-center justify-center gap-4 rounded-lg border-0 bg-indigo-600  p-3 px-6 text-center font-fontBody uppercase tracking-widest text-indigo-50 ring-indigo-600 focus:outline-none focus:ring-1 focus:ring-offset-1 active:scale-90 md:py-3"
             to="/posts/new"
           >
             <HiOutlinePlusCircle className="size-5" />
