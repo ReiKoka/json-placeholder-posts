@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLoaderData, useLocation } from "react-router-dom";
 import { toast } from "sonner";
 
@@ -6,7 +6,12 @@ import { IconContext } from "react-icons";
 import { FaRegComments, FaRegPenToSquare } from "react-icons/fa6";
 import { HiOutlineX } from "react-icons/hi";
 
-import { getComments, getPost, updatePost } from "../services/apiPosts";
+import {
+  getComments,
+  getPost,
+  getUsers,
+  updatePost,
+} from "../services/apiPosts";
 
 import Comment from "../components/Comment";
 import EditModal from "../components/EditModal";
@@ -16,11 +21,22 @@ function Post() {
   const [open, setOpen] = useState(false);
   const postObj = useLoaderData();
   const location = useLocation();
+  const [users, setUsers] = useState(null);
 
-  const { users } = location.state;
-  const user = users.find((user) => user.id === postObj.userId);
+  useEffect(() => {
+    async function getUser() {
+      if (location.state === null) {
+        const data = await getUsers();
+        setUsers(data);
+      } else {
+        setUsers(location.state.users)
+      }
+    }
+    getUser();
+  }, [location.state]);
 
-  const post = { ...postObj, userName: user.name };
+  const user = users?.find((user) => user.id === postObj.userId);
+  const post = { ...postObj, userName: user?.name };
 
   const [title, setTitle] = useState(post.title);
   const [body, setBody] = useState(post.body);
@@ -64,9 +80,9 @@ function Post() {
       <p className="mb-3 w-full font-fontBody text-sm font-light capitalize md:mb-5 md:text-base">
         {body}
       </p>
-      <div className="flex w-full justify-end mb-5 md:mb-7">
+      <div className="mb-5 flex w-full justify-end md:mb-7">
         <button
-          className="w-full rounded-lg border-0 bg-indigo-600 p-3 text-center font-fontBody uppercase  tracking-widest text-indigo-50 ring-indigo-600 focus:outline-none focus:ring-1 focus:ring-offset-1 active:scale-90 md:w-1/4 md:py-3 px-6"
+          className="w-full rounded-lg border-0 bg-indigo-600 p-3 px-6 text-center font-fontBody  uppercase tracking-widest text-indigo-50 ring-indigo-600 focus:outline-none focus:ring-1 focus:ring-offset-1 active:scale-90 md:w-1/4 md:py-3"
           onClick={() => setOpen(true)}
         >
           Edit Post
@@ -136,7 +152,7 @@ function Post() {
         </form>
       </EditModal>
 
-      <div className="mb-5 md:mb-7 flex w-full items-center justify-between border-b-[1px] border-t-[1px] border-stone-300">
+      <div className="mb-5 flex w-full items-center justify-between border-b-[1px] border-t-[1px] border-stone-300 md:mb-7">
         <p className="flex items-end px-2 py-3 font-fontTitle md:px-4 md:py-4">
           <span className="pr-2 md:pr-3">
             {
